@@ -25,16 +25,16 @@ checkbox_termos_uso.click()
 btn_acessar = navegador.find_element("class name", "btn-acessar")
 btn_acessar.click()
 
-# página de orientações
 
+# página de orientações
 btn_iniciar_desafio = navegador.find_element("class name", "btn-acessar")
 navegador.execute_script("arguments[0].scrollIntoView()", btn_iniciar_desafio)
 time.sleep(3)
 btn_iniciar_desafio = navegador.find_element("class name", "btn-acessar")
 btn_iniciar_desafio.click()
 
-# página de cadastros
 
+# página de cadastros
 # campos
 campo_cpf = navegador.find_element("id", "cpf")
 campo_cns = navegador.find_element("id", "cns")
@@ -52,4 +52,4 @@ campo_cpf.send_keys("")
 btn_salvar.click()
 time.sleep(10)
 
-# Código incompleto por motivos de tempo
+# Código incompleto
