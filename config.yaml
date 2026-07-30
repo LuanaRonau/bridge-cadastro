@@ -1,0 +1,18 @@
+organization: "LuanaRonau"
+
+repositories:
+  - "bridge-cadastro"
+
+# Nome exato do Project (board) que deve ser desconsiderado
+# na contagem de issues restantes do milestone
+ladybug_project_title: "🐞 Ladybug"
+
+# Quantas issues restantes (excluindo as do board Ladybug) definem o alerta
+last_n_remaining: 5
+
+# Onde o estado (última execução e issues já notificadas) fica salvo dentro do repo
+state_file: "state/monitor_state.json"
+
+# Janela de segurança: quantos dias para trás olhar na busca de issues fechadas
+# (serve só como limite de busca; o controle real de duplicidade é via state file)
+lookback_days: 2
