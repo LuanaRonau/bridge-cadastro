@@ -16,3 +16,5 @@ state_file: "state/monitor_state.json"
 # Janela de segurança: quantos dias para trás olhar na busca de issues fechadas
 # (serve só como limite de busca; o controle real de duplicidade é via state file)
 lookback_days: 2
+
+owner_type: "user"
