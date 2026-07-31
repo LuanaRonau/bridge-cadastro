@@ -77,7 +77,7 @@ def graphql(session, query, variables):
 def find_project_id(session, org, project_title):
     query = """
     query($org: String!, $cursor: String) {
-      organization(login: $org) {
+      user(login: $org) {
         projectsV2(first: 50, after: $cursor) {
           pageInfo { hasNextPage endCursor }
           nodes { id title }
