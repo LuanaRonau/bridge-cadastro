@@ -71,6 +71,8 @@ def graphql(session, query, variables):
         raise RuntimeError(f"Erro GraphQL: {data['errors']}")
     return data["data"]
 
+repo_display_map = config.get("repo_display", {})
+default_emoji = config.get("default_emoji", "iphone")
 
 # ---------------------------------------------------------------------------
 # 1. Descobrir o Project "Ladybug" e todos os itens (issues) que ele contém
@@ -204,11 +206,18 @@ def get_open_issues_in_milestone(session, owner, repo, milestone_number):
 # 4. Slack
 # ---------------------------------------------------------------------------
 
+def format_project_name(project, display_map, default_emoji):
+    info = display_map.get(project, {})
+    emoji = info.get("emoji", default_emoji)
+    display_name = info.get("display_name", project)
+    return f":{emoji}: {display_name}"
+
 def send_slack_message(webhook_url, project, milestone, issue_title, issue_url,
                         remaining, ladybug_excluded_count):
+    repo_label = format_project_name(project)
     text_lines = [
-        f":white_check_mark: Issue fechada em *{project}*",
-        f"Milestone *{milestone}*",
+        f"*{repo_label}*",
+        f":white_check_mark: Issue fechada no milestone *{milestone}*",
         f" ",
         f"<{issue_url}|#{issue_number} — {issue_title}>",
         f"Faltam *{remaining}* issue(s) para fechar o milestone.",
