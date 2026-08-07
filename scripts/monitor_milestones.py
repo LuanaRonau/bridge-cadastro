@@ -218,9 +218,9 @@ def send_slack_message(webhook_url, project, milestone, issue_title, issue_url,
     repo_label = format_project_name(project, repo_display_map, default_emoji)
     text_lines = [
         f"*{repo_label}*",
-        f":white_check_mark: Issue fechada no milestone *{milestone}*",
+        f"Issue fechada no milestone *{milestone}*",
         f" ",
-        f"<{issue_url}|#{issue_number} — {issue_title}>",
+        f"<{issue_url}|#{issue_number} - {issue_title}>",
         f"Faltam *{remaining}* issue(s) para fechar o milestone.",
     ]
     if ladybug_excluded_count > 0:
