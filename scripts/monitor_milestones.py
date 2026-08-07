@@ -71,9 +71,6 @@ def graphql(session, query, variables):
         raise RuntimeError(f"Erro GraphQL: {data['errors']}")
     return data["data"]
 
-repo_display_map = config.get("repo_display", {})
-default_emoji = config.get("default_emoji", "iphone")
-
 # ---------------------------------------------------------------------------
 # 1. Descobrir o Project "Ladybug" e todos os itens (issues) que ele contém
 # ---------------------------------------------------------------------------
@@ -207,14 +204,18 @@ def get_open_issues_in_milestone(session, owner, repo, milestone_number):
 # ---------------------------------------------------------------------------
 
 def format_project_name(project, display_map, default_emoji):
+    """Retorna o nome de exibição do projeto, prefixado com seu emoji custom
+    do Slack, conforme mapeamento definido no config.yaml. Se o repo não estiver 
+    mapeado, usa o próprio nome do repo como fallback e o `default_emoji`."""
     info = display_map.get(project, {})
     emoji = info.get("emoji", default_emoji)
     display_name = info.get("display_name", project)
     return f":{emoji}: {display_name}"
 
 def send_slack_message(webhook_url, project, milestone, issue_title, issue_url,
-                        remaining, ladybug_excluded_count):
-    repo_label = format_project_name(project)
+                       issue_number, remaining, ladybug_excluded_count,
+                       repo_display_map, default_emoji):
+    repo_label = format_project_name(project, repo_display_map, default_emoji)
     text_lines = [
         f"*{repo_label}*",
         f":white_check_mark: Issue fechada no milestone *{milestone}*",
@@ -248,6 +249,10 @@ def main():
     last_n = config.get("last_n_remaining", 5)
     state_file = config.get("state_file", "state/monitor_state.json")
     lookback_days = config.get("lookback_days", 2)
+
+    # Mapeamento de nome de exibição + emoji custom do Slack por repositorio
+    repo_display_map = config.get("project_display", {})
+    default_emoji = config.get("default_emoji", "iphone")
 
     token = os.environ.get("GH_MONITOR_TOKEN")
     slack_webhook = os.environ.get("SLACK_WEBHOOK_URL")
@@ -356,6 +361,8 @@ def main():
                     issue_url=issue["html_url"],
                     remaining=remaining_after_this_close,
                     ladybug_excluded_count=open_ladybug_count,
+                    project_display_map=project_display_map,
+                    default_emoji=default_emoji,
                 )
             else:
                 print(
