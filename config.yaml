@@ -4,6 +4,15 @@ owner_type: "user"
 repositories:
   - "bridge-cadastro"
 
+project_display:
+  bridge-cadastro:
+    emoji: app-vacinacao
+    display_name: "Vacinação"
+  repo-teste-2:
+    emoji: beetle-teste2
+    display_name: "Projeto Beta"
+default_emoji: iphone
+
 # Nome exato do Project (board) que deve ser desconsiderado
 # na contagem de issues restantes do milestone
 ladybug_project_title: "🐞 Ladybug"
