@@ -361,7 +361,7 @@ def main():
                     issue_url=issue["html_url"],
                     remaining=remaining_after_this_close,
                     ladybug_excluded_count=open_ladybug_count,
-                    project_display_map=project_display_map,
+                    repo_display_map=repo_display_map,
                     default_emoji=default_emoji,
                 )
             else:
