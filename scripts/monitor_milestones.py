@@ -207,8 +207,10 @@ def get_open_issues_in_milestone(session, owner, repo, milestone_number):
 def send_slack_message(webhook_url, project, milestone, issue_title, issue_url,
                         remaining, ladybug_excluded_count):
     text_lines = [
-        f":white_check_mark: Issue fechada em *{project}* — milestone *{milestone}*",
-        f"<{issue_url}|{issue_title}>",
+        f":white_check_mark: Issue fechada em *{project}*",
+        f"Milestone *{milestone}*",
+        f" ",
+        f"<{issue_url}|#{issue_number} — {issue_title}>",
         f"Faltam *{remaining}* issue(s) para fechar o milestone.",
     ]
     if ladybug_excluded_count > 0:
