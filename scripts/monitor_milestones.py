@@ -359,7 +359,7 @@ def main():
                     milestone=milestone_title,
                     issue_title=issue["title"],
                     issue_url=issue["html_url"],
-                    issue_number=["number"],
+                    issue_number=issue["number"],
                     remaining=remaining_after_this_close,
                     ladybug_excluded_count=open_ladybug_count,
                     repo_display_map=repo_display_map,
