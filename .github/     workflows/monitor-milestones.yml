@@ -35,7 +35,7 @@ jobs:
           # Precisa ter acesso de leitura aos repositórios listados no config.yaml
           GH_MONITOR_TOKEN: ${{ secrets.GH_MONITOR_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: python scripts/monitor_milestones.py
+        run: python scripts/monitor.py
 
       - name: Commitar estado atualizado
         run: |
