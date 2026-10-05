@@ -2,8 +2,8 @@ name: Monitor de Milestones (fechamento de issues)
 
 on:
   schedule:
-    # Roda a cada 10 minutos. Ajuste conforme a urgência que você precisa.
-    - cron: "*/10 * * * *"
+    # Roda a cada 15 minutos.
+    - cron: "*/15 * * * *"
   workflow_dispatch: {}
 
 # Precisa de permissão de escrita para commitar o arquivo de estado de volta no repo
