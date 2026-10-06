@@ -8,9 +8,12 @@ project_display:
   bridge-cadastro:
     emoji: app-vacinacao
     display_name: "Vacinação"
-  repo-teste-2:
-    emoji: beetle-teste2
-    display_name: "Projeto Beta"
+  esusab-acs:
+    emoji: territorio
+    display_name: "Território"
+  esusaps-app-atendimento:
+    emoji: e-sus
+    display_name: "Atendimento"
 default_emoji: iphone
 
 # Nome exato do Project (board) que deve ser desconsiderado
